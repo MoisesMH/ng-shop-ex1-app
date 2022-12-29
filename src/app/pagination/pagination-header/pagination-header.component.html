@@ -1,0 +1,6 @@
+<span [hidden]="res.count > 0">
+    There are no results found.
+</span>
+<span [hidden]="res.count === 0">
+    Showing {{ res | startCount }} - {{ res | endCount }} of {{ res.count }} results.
+</span>

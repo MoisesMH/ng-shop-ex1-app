@@ -1,0 +1,29 @@
+<nav class="navbar">
+    <div *ngIf="!!leftLinks" class="navbar-left">
+        <ul>
+            <li *ngFor="let link of leftLinks">
+                <a [routerLink]="link.to">{{ link.name }}</a>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="!!midLinks" class="navbar-mid">
+        <ul>
+            <li *ngFor="let link of midLinks">
+                <a [routerLink]="link.to">{{ link.name }}</a>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="!!rightLinks" class="navbar-right">
+        <ul>
+            <li>
+                <a>
+                    <i class="fa fa-shopping-cart fa-2x"></i>
+                    <div class="cart-no">5</div>
+                </a>
+            </li>
+            <li *ngFor="let link of rightLinks">
+                <a [routerLink]="link.to">{{ link.name }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,12 @@
+<p>Sort</p>
+<div (click)="expand()" [ariaExpanded]="isExpanded()">
+    {{ sort ? sort.name : "Select category..." }}
+</div>
+<ul [class.show]="isExpanded()">
+    <li 
+        *ngFor="let option of sortOptions"
+        (click)="onSortSelected(option); close()"
+    >
+        {{ option.name }}
+    </li>
+</ul>

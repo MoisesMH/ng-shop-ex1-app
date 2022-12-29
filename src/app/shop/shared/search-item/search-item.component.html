@@ -1,0 +1,12 @@
+<input 
+    appInputFocus
+    #box
+    type="text"
+    [id]="name"
+    [name]="name"
+    [ariaLabel]="name"
+    [placeholder]="placeholder"
+    (keyup.enter)="onSearch(box.value)"
+/>
+<button (click)="onSearch(box.value)">Search</button>
+<button (click)="box.value = ''; onReset()">Reset</button>

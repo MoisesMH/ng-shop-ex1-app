@@ -1,0 +1,41 @@
+<!-- <ul>
+    <li *ngFor="let product of products$ | async">
+        {{ product.name }}
+    </li>
+</ul> -->
+<app-sortby-list
+    (sortMethod)="onSortMethodSelected($event)"
+></app-sortby-list>
+<app-brands-list
+    (setBrandId)="onBrandIdSelected($event)"
+></app-brands-list>
+<app-types-list
+    (setTypeId)="onTypeIdSelected($event)"
+></app-types-list>
+<app-search-item
+    name="search"
+    placeholder="Search for an item..."
+    [search]="shopParams.search"
+    (searchChange)="onSearchSelected($event)"
+    (reset)="onResetSelected()"
+></app-search-item>
+<app-product-list
+    [products]="products$ | async"
+></app-product-list>
+<app-pagination-header
+    [res]="res$ | async"
+></app-pagination-header>
+<app-pagination
+    [hidden]="totalCount === 0"
+    [res]="res$ | async"
+    (changePage)="onPageSelected($event)"
+></app-pagination>
+<!-- <app-pagination
+    *ngIf="totalCount"
+    [currentPage]="shopParams.pageNumber"
+    [pageSize]="shopParams.pageSize"
+    [totalItems]="totalCount"
+    (changePage)="onPageSelected($event)"
+></app-pagination> -->
+<!-- <app-product-item link="letsgo" (goToLink)="goToLink($event)"></app-product-item>
+<app-product-item link="letgo" (goToLink)="goToLink($event)"></app-product-item> -->

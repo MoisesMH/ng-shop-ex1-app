@@ -1,0 +1,13 @@
+<nav>
+    <ul>
+        <li *ngFor="let page of res | paginate">
+            <a 
+                role="button"
+                [ngClass]="{'page-item': true, active: currentPage === page}"
+                (click)="onPageChanged(page)"
+            >
+                {{ page }}
+            </a>
+        </li>
+    </ul>
+</nav>

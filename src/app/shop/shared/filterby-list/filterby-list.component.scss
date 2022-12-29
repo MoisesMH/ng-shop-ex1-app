@@ -1,0 +1,25 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    border: 2px solid #bbb;
+    border-radius: 8px;
+    // z-index: 10;
+    overflow: hidden;
+    & li {
+        background-color: #fff;
+        border-bottom: 1px solid #bbb;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        &:hover {
+            background-color: #adf;
+        }
+        &.active {
+            background-color: #09f;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}

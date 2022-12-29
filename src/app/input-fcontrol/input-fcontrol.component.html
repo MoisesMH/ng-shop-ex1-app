@@ -1,0 +1,15 @@
+<label [for]="name">{{ text }}</label>
+<input
+    [ngClass]="'someClass'"
+    [type]="type"
+    [id]="name"
+    [name]="name"
+    [placeholder]="placeholder"
+    [required]="required"
+    [min]="isNumber ? min : null"
+    [max]="isNumber ? max : null"
+    [step]="isNumber ? step : null"
+    [accept]="isMultipart ? accept : null"
+    [multiple]="isMultipart ? multiple : null"
+/>
+<!-- <p>Value: {{ myInput.value }}</p> -->

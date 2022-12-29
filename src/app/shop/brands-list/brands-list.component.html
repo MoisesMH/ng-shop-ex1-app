@@ -1,0 +1,5 @@
+<p>Brands</p>
+<app-filterby-list
+    [group]="brands$ | async"
+    (setItemId)="onBrandIdSelected($event)"
+></app-filterby-list>
