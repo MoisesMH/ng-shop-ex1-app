@@ -13,23 +13,23 @@ import { ShopParams } from '../shared/models/shopParams.model';
 @Injectable()
 export class ShopService {
     private baseUrl: string;
-    private pagination: BehaviorSubject<Pagination>;
+    // private pagination: BehaviorSubject<Pagination>;
 
     constructor(private readonly http: HttpClient) {
         this.baseUrl = 'https://localhost:7011/api/'
-        this.pagination = new BehaviorSubject<Pagination>(
-            {
-                pageIndex: 1,
-                pageSize: 0,
-                count: 0,
-                data: null
-            }
-        );
+        // this.pagination = new BehaviorSubject<Pagination>(
+        //     {
+        //         pageIndex: 1,
+        //         pageSize: 0,
+        //         count: 0,
+        //         data: null
+        //     }
+        // );
     }
 
-    getPagination() {
-        return this.pagination.asObservable();
-    }
+    // getPagination() {
+    //     return this.pagination.asObservable();
+    // }
 
     getProducts(shopParams: ShopParams) {
         let params: HttpParams = new HttpParams()
@@ -47,13 +47,13 @@ export class ShopService {
             this.baseUrl + 'products',
             { params }
         )
-        .pipe(tap(body => {
-            this.pagination.next({
-                pageIndex: body.pageIndex,
-                pageSize: body.pageSize,
-                count: body.count
-            } as Pagination)
-        }))
+        // .pipe(tap(body => {
+        //     this.pagination.next({
+        //         pageIndex: body.pageIndex,
+        //         pageSize: body.pageSize,
+        //         count: body.count
+        //     } as Pagination)
+        // }))
     }
 
     getProductsByPagination(params: Partial<Pagination>) {

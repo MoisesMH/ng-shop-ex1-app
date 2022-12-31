@@ -13,6 +13,7 @@ export class TypesListComponent implements OnInit {
   types$: Observable<Array<ProductType>>;
   // types: Array<ProductType>;
   // subscription: Subscription;
+  selectedTypeId$: Observable<number>;
   @Output() setTypeId: EventEmitter<number>;
 
   constructor(
@@ -21,6 +22,7 @@ export class TypesListComponent implements OnInit {
   ) {
     // this.types$ = this._shopService.getTypes()
     this.setTypeId = new EventEmitter<number>();
+    this.selectedTypeId$ = this._filterbyIdService.getTypeId();
   }
 
   onTypeIdSelected(typeId: number) {
@@ -31,6 +33,7 @@ export class TypesListComponent implements OnInit {
 
   ngOnInit() {
     this.types$ = this._shopService.getTypes()
+    // this.selectedTypeId$ = this._filterbyIdService.getTypeId();
   }
 
   ngOnDestroy() {

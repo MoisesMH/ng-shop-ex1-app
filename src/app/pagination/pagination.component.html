@@ -1,13 +1,16 @@
-<nav>
-    <ul>
-        <li *ngFor="let page of res | paginate">
-            <a 
-                role="button"
-                [ngClass]="{'page-item': true, active: currentPage === page}"
-                (click)="onPageChanged(page)"
-            >
-                {{ page }}
-            </a>
-        </li>
-    </ul>
-</nav>
+<ng-container *ngIf="res">
+    <nav>
+        <ul [hidden]="res.count === 0">
+            <li *ngFor="let page of res | paginate">
+            <!-- <li *ngFor="let page of res$ | async | paginate">     -->
+                <a 
+                    role="button"
+                    [ngClass]="{'page-item': true, active: currentPage === page}"
+                    (click)="onPageChanged(page)"
+                >
+                    {{ page }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</ng-container>

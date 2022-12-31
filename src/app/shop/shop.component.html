@@ -3,7 +3,8 @@
         {{ product.name }}
     </li>
 </ul> -->
-<app-sortby-list
+
+<!-- <app-sortby-list
     (sortMethod)="onSortMethodSelected($event)"
 ></app-sortby-list>
 <app-brands-list
@@ -15,9 +16,7 @@
 <app-search-item
     name="search"
     placeholder="Search for an item..."
-    [search]="shopParams.search"
-    (searchChange)="onSearchSelected($event)"
-    (reset)="onResetSelected()"
+    [search]="search$ | async"
 ></app-search-item>
 <app-product-list
     [products]="products$ | async"
@@ -29,7 +28,8 @@
     [hidden]="totalCount === 0"
     [res]="res$ | async"
     (changePage)="onPageSelected($event)"
-></app-pagination>
+></app-pagination> -->
+
 <!-- <app-pagination
     *ngIf="totalCount"
     [currentPage]="shopParams.pageNumber"
@@ -39,3 +39,26 @@
 ></app-pagination> -->
 <!-- <app-product-item link="letsgo" (goToLink)="goToLink($event)"></app-product-item>
 <app-product-item link="letgo" (goToLink)="goToLink($event)"></app-product-item> -->
+
+<app-sortby-list
+    [sort]="sort$ | async"
+></app-sortby-list>
+<app-brands-list
+></app-brands-list>
+<app-types-list
+></app-types-list>
+<app-search-item
+    name="search"
+    placeholder="Search for an item..."
+    [search]="search$ | async"
+></app-search-item>
+<app-product-list
+    [products]="products$ | async"
+></app-product-list>
+<app-pagination-header
+    [res]="pagination$ | async"
+></app-pagination-header>
+<app-pagination
+    [currentPage]="page$ | async"
+    [res]="pagination$ | async"
+></app-pagination>

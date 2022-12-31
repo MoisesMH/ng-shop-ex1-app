@@ -1,5 +1,6 @@
 <p>Types</p>
 <app-filterby-list
-    [group]="types$ | async"
+    [items]="types$ | async"
+    [selectedItemId]="selectedTypeId$ | async"
     (setItemId)="onTypeIdSelected($event)"
 ></app-filterby-list>

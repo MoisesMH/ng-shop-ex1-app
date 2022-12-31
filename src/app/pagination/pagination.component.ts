@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Pagination } from '../shared/models/pagination.model';
+import { FilterbyListService } from '../shop/shared/filterby-list/filterby-list.service';
+import { ShopService } from '../shop/shop.service';
 
 @Component({
   selector: 'app-pagination',
@@ -14,13 +17,18 @@ export class PaginationComponent implements OnInit {
   @Input() res: Pagination;
   @Output() changePage: EventEmitter<number>;
 
+  res$: Observable<Pagination>
   // pages: Array<number>;
   
 
-  constructor() {
+  constructor(
+    private readonly _filterbyListService: FilterbyListService,
+    private readonly _shopService: ShopService  
+  ) {
     this.changePage = new EventEmitter<number>();
     // const pagesCount: number = Math.ceil(this.totalItems / this.pageSize)
     // this.pages = this.range(this.currentPage, pagesCount)
+    // this.res$ = this._filterbyListService.getPagination()
   }
 
   // range(start: number, size: number) {
@@ -33,6 +41,7 @@ export class PaginationComponent implements OnInit {
 
   onPageChanged(page: number) {
     this.currentPage = page
+    this._filterbyListService.setPage(this.currentPage)
     this.changePage.emit(page)
   }
 
@@ -42,9 +51,9 @@ export class PaginationComponent implements OnInit {
     
     // const pagesCount: number = Math.ceil(this.totalItems / this.pageSize)
     // console.log(pagesCount);
-    
+    // this.res$ = this._filterbyListService.getPagination()
     // this.pages = this.range(this.currentPage, pagesCount)
-    this.onPageChanged(1)
+    // this.onPageChanged(1)
     // this.currentPage = this.res.pageIndex
   }
 }

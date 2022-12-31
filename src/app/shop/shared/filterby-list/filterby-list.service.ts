@@ -11,40 +11,14 @@ import { ShopService } from "../../shop.service";
 export class FilterbyListService {
     private shopParams: ShopParams;
     private shopParams$: BehaviorSubject<ShopParams>;
-    private products$: Observable<Product | Array<Product>>;
-    private pagination$: BehaviorSubject<Pagination>;
 
-    constructor(private readonly _shopService: ShopService) {
+    constructor() {
         this.shopParams = new ShopParams();
         this.shopParams$ = new BehaviorSubject<ShopParams>(this.shopParams);
-        this.pagination$ = new BehaviorSubject<Pagination>({
-            pageIndex: this.shopParams.pageNumber,
-            pageSize: this.shopParams.pageSize,
-            count: 0
-        } as Pagination);
-        this.updateProducts();
     }
 
-    updateProducts() {
-        this.products$ = this._shopService.getProducts(this.shopParams).pipe(
-            tap(body =>
-                this.pagination$.next({
-                    pageIndex: body.pageIndex,
-                    pageSize: body.pageSize,
-                    count: body.count
-                } as Pagination)
-            ),
-            map(body => body.data)
-        )
-    }
-
-    getProducts() {
-        return this.products$;
-    }
-
-    getPagination() {
-        // return this._shopService.getPagination();
-        return this.pagination$.asObservable();
+    getShopParams() {
+        return this.shopParams$.asObservable()
     }
 
     getBrandId() {
@@ -54,9 +28,11 @@ export class FilterbyListService {
     }
 
     setBrandId(id: number) {
-        this.shopParams.brandId = id
-        this.shopParams.pageNumber = 1
-        this.shopParams$.next(this.shopParams)
+        if (this.shopParams.brandId !== id) {
+            this.shopParams.brandId = id
+            this.shopParams.pageNumber = 1
+            this.shopParams$.next(this.shopParams)            
+        }
     }
 
     getTypeId() {
@@ -66,9 +42,11 @@ export class FilterbyListService {
     }
 
     setTypeId(id: number) {
-        this.shopParams.typeId = id
-        this.shopParams.pageNumber = 1
-        this.shopParams$.next(this.shopParams)
+        if (this.shopParams.typeId !== id) {
+            this.shopParams.typeId = id
+            this.shopParams.pageNumber = 1
+            this.shopParams$.next(this.shopParams)            
+        }
     }
     
     getSort() {
@@ -78,19 +56,25 @@ export class FilterbyListService {
     }
 
     setSort(value: string) {
-        this.shopParams.sort = value
-        this.shopParams$.next(this.shopParams)
+        if (this.shopParams.sort !== value) {
+            this.shopParams.sort = value
+            this.shopParams$.next(this.shopParams)            
+        }
     }
 
-    getPage() {
-        return this.shopParams$.asObservable().pipe(
-            map(data => data.sort)
-        )
-    }
+    // getPage() {
+    //     return this.shopParams$.asObservable().pipe(
+    //         map(data => data.sort)
+    //     )
+    // }
 
     setPage(currentPage: number) {
-        this.shopParams.pageNumber = currentPage
-        this.shopParams$.next(this.shopParams)
+        // Initially, the if condition was for this method
+        // so keep the if here and delete the if conditions for the other methods if necessary
+        if(this.shopParams.pageNumber !== currentPage) {
+            this.shopParams.pageNumber = currentPage
+            this.shopParams$.next(this.shopParams)
+        }
     }
 
     getSearch() {
@@ -100,9 +84,11 @@ export class FilterbyListService {
     }
 
     setSearch(value: string) {
-        this.shopParams.search = value
-        this.shopParams.pageNumber = 1
-        this.shopParams$.next(this.shopParams)
+        if (this.shopParams.search !== value) {
+            this.shopParams.search = value
+            this.shopParams.pageNumber = 1
+            this.shopParams$.next(this.shopParams)            
+        }
     }
 
     reset() {

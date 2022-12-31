@@ -13,6 +13,7 @@ export class BrandsListComponent implements OnInit {
   brands$: Observable<Array<ProductBrand>>;
   // brands: Array<ProductBrand>;
   // subscription: Subscription;
+  selectedBrandId$: Observable<number>;
   @Output() setBrandId: EventEmitter<number>;
 
   constructor(
@@ -21,6 +22,7 @@ export class BrandsListComponent implements OnInit {
   ) {
     // this.brands$ = this._shopService.getBrands()
     this.setBrandId = new EventEmitter<number>();
+    this.selectedBrandId$ = this._filterbyIdService.getBrandId();
   }
 
   onBrandIdSelected(brandId: number) {
@@ -34,6 +36,7 @@ export class BrandsListComponent implements OnInit {
     //   brands => this.brands = brands
     // )
     this.brands$ = this._shopService.getBrands()
+    // this.selectedBrandId$ = this._filterbyIdService.getBrandId();
   }
 
   ngOnDestroy() {

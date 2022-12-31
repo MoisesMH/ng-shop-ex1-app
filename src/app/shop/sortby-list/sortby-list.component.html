@@ -1,6 +1,10 @@
 <p>Sort</p>
 <div (click)="expand()" [ariaExpanded]="isExpanded()">
-    {{ sort ? sort.name : "Select category..." }}
+    <!-- {{ sort ? sort.name : "Select category..." }} -->
+    <!-- {{ sort$ | async | initSort: { init: "Select category..." } }} -->
+    <!-- {{ sort | initSort: { init: "Select category...", sortOptions } }} -->
+    {{ sort$ | async | initSort: { init: "Select category...", sortOptions } }}
+
 </div>
 <ul [class.show]="isExpanded()">
     <li 

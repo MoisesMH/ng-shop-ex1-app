@@ -7,7 +7,7 @@ import { FilterbyListService } from './filterby-list.service';
   styleUrls: ['./filterby-list.component.scss']
 })
 export class FilterbyListComponent<T> {
-  @Input() group: Array<T>;
+  @Input() items: Array<T>;
   @Input() selectedItemId: number;
 
   @Output() setItemId: EventEmitter<number>;

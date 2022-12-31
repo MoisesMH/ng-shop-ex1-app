@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let item of group" 
+    <li *ngFor="let item of items" 
         [class.active]="item.id === selectedItemId"
         [value]="item.id"
         (click)="onItemIdSelected(item.id)"
